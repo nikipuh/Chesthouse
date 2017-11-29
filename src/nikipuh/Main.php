@@ -38,7 +38,7 @@
                     $player->sendMessage("$sendername gave you a chesthouse!");
                 }
             } else
-                $sender->sendMessage("Use: /sbh <player> <house(1)> <quantity");
+                $sender->sendMessage("Use: /sbh <player> <house(1)> <quantity>");
 
             return true;
         }
@@ -69,22 +69,7 @@
 							$v3 = new Vector3($x1, $y1, $z1);
 							$saveBlock = $level->getBlock(new Vector3($x1, $y1, $z1));
 							$this->open[$user]['coords'][] = $saveBlock;
-							if($saveBlock instanceof WallSign or $saveBlock instanceof SignPost) {
-								$tile = $level->getTile($saveBlock);
-								$this->open[$user]['coords']["$x1:$y1:$z1"] = [
-									$saveBlock,
-									$tile->getText()
-								];
-							}	
-							elseif($saveBlock instanceof FlowerPot) {
-								$tile = $level->getTile($saveBlock);
-								$this->open[$user]['coords']["$x1:$y1:$z1"] = [
-									$saveBlock,
-									$tile->getItem()
-								];
-							}
-							else
-								$this->open[$user]['coords']["$x1:$y1:$z1"] = $saveBlock;
+						        $this->open[$user]['coords']["$x1:$y1:$z1"] = $saveBlock;
 						}
 
 				$newBlock = BlockFactory::get(5);
