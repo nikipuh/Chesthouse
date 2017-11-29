@@ -9,25 +9,20 @@
 	use pocketmine\command\Command;
 	use pocketmine\command\CommandSender;
 	use pocketmine\block\Block;
-    use pocketmine\block\BlockFactory;
+        use pocketmine\block\BlockFactory;
 	use pocketmine\event\Listener;
 	use pocketmine\event\block\BlockPlaceEvent;
 	use pocketmine\Player;
-    use pocketmine\item\ItemFactory;
-    use pocketmine\nbt\tag\CompoundTag;
+        use pocketmine\item\ItemFactory;
+        use pocketmine\nbt\tag\CompoundTag;
 
+	class Main extends PluginBase implements Listener {
 
-	class Main extends PluginBase implements Listener
-    {
-
-        public function onEnable()
-        {
+        public function onEnable() {
             $this->getServer()->getPluginManager()->registerEvents($this, $this);
         }
-
-        public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
-        {
-
+		
+        public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
             if (count($args) == 3) {
                 $name = mb_strtolower($args[0]);
                 $house = mb_strtolower($args[1]);
@@ -43,7 +38,7 @@
                     $player->sendMessage("$sendername gave you a chesthouse!");
                 }
             } else
-                $sender->sendMessage("Use: /sbh <player> <house>");
+                $sender->sendMessage("Use: /sbh <player> <house(1)> <quantity");
 
             return true;
         }
