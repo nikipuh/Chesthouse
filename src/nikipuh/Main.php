@@ -98,17 +98,19 @@
 							new Vector3($x1, $y, $z1),
 							$air
 						);
-				$y--;
-$x--; $z--;
+			    $y--;$x--; $z--;
                             $wall = 5;
                             $roof = 17;
                             $floor = 1;
-                            $level->setBlockIdAt($x, $y, $z, $wall);
-                            $level->setBlockIdAt($x, $y + 1, $z, $wall);
+                            $cobble = 4;
+                            $level->setBlockIdAt($x, $y, $z, $cobble);
+                            $level->setBlockIdAt($x, $y + 1, $z, $cobble);
                             $level->setBlockIdAt($x + 1, $y, $z, $wall);
                             $level->setBlockIdAt($x + 1, $y + 1, $z, $wall);
-                            $level->setBlockIdAt($x + 2, $y-1, $z, $wall); //underdoor
-                            $level->setBlockIdAt($x + 2, $y, $z, 183); //door
+
+                            $level->setBlockIdAt($x + 2, $y, $z, 64); //door
+                            $level->setBlockIdAt($x + 2, $y+1, $z, 64,8); //upperdoor
+
                             $level->setBlockIdAt($x + 3, $y, $z, $wall);
                             $level->setBlockIdAt($x + 3, $y + 1, $z, $wall);
                             $level->setBlockIdAt($x, $y, $z + 1, $wall);
@@ -117,54 +119,96 @@ $x--; $z--;
                             $level->setBlockIdAt($x, $y + 1, $z + 2, 102);
                             $level->setBlockIdAt($x, $y, $z + 3, $wall);
                             $level->setBlockIdAt($x, $y + 1, $z + 3, $wall);
-                            $level->setBlockIdAt($x + 4, $y, $z, $wall);
-                            $level->setBlockIdAt($x + 4, $y + 1, $z, $wall);
+                            $level->setBlockIdAt($x + 4, $y, $z, $cobble);
+                            $level->setBlockIdAt($x + 4, $y + 1, $z, $cobble);
                             $level->setBlockIdAt($x + 4, $y, $z + 1, $wall);
                             $level->setBlockIdAt($x + 4, $y + 1, $z + 1, $wall);
                             $level->setBlockIdAt($x + 4, $y, $z + 2, $wall);
                             $level->setBlockIdAt($x + 4, $y + 1, $z + 2, 102);
                             $level->setBlockIdAt($x + 4, $y, $z + 3, $wall);
                             $level->setBlockIdAt($x + 4, $y + 1, $z + 3, $wall);
-                            $level->setBlockIdAt($x, $y, $z + 4, $wall);
-                            $level->setBlockIdAt($x, $y + 1, $z + 4, $wall);
+                            $level->setBlockIdAt($x, $y, $z + 4, $cobble);
+                            $level->setBlockIdAt($x, $y + 1, $z + 4, $cobble);
                             $level->setBlockIdAt($x + 1, $y, $z + 4, $wall);
                             $level->setBlockIdAt($x + 1, $y + 1, $z + 4, $wall);
                             $level->setBlockIdAt($x + 2, $y, $z + 4, $wall);
                             $level->setBlockIdAt($x + 2, $y + 1, $z + 4, 102);
                             $level->setBlockIdAt($x + 3, $y, $z + 4, $wall);
                             $level->setBlockIdAt($x + 3, $y + 1, $z + 4, $wall);
-                            $level->setBlockIdAt($x + 4, $y, $z + 4, $wall);
-                            $level->setBlockIdAt($x + 4, $y + 1, $z + 4, $wall);
+                            $level->setBlockIdAt($x + 4, $y, $z + 4, $cobble);
+                            $level->setBlockIdAt($x + 4, $y + 1, $z + 4, $cobble);
 
-                            $level->setBlockIdAt($x, $y+2, $z, $roof);
-                            $level->setBlockIdAt($x+1, $y+2, $z, $roof);
-                            $level->setBlockIdAt($x+2, $y+2, $z, $roof);
-                            $level->setBlockIdAt($x+3, $y+2, $z, $roof);
-                            $level->setBlockIdAt($x+4, $y+2, $z, $roof);
+                            //EBENE2
+                            $level->setBlockIdAt($x, $y+2, $z, $cobble);
+                            $level->setBlockIdAt($x+1, $y+2, $z, $wall);
+                            $level->setBlockIdAt($x+2, $y+2, $z, $wall);
+                            $level->setBlockIdAt($x+3, $y+2, $z, $wall);
+                            $level->setBlockIdAt($x+4, $y+2, $z, $cobble);
 
-                            $level->setBlockIdAt($x, $y+2, $z+1, $roof);
-                            $level->setBlockIdAt($x+1, $y+2, $z+1, $roof);
-                            $level->setBlockIdAt($x+2, $y+2, $z+1, $roof);
-                            $level->setBlockIdAt($x+3, $y+2, $z+1, $roof);
-                            $level->setBlockIdAt($x+4, $y+2, $z+1, $roof);
+                            $level->setBlockIdAt($x, $y+2, $z+4, $cobble);
+                            $level->setBlockIdAt($x+1, $y+2, $z+4, $wall);
+                            $level->setBlockIdAt($x+2, $y+2, $z+4, $wall);
+                            $level->setBlockIdAt($x+3, $y+2, $z+4, $wall);
+                            $level->setBlockIdAt($x+4, $y+2, $z+4, $cobble);
 
-                            $level->setBlockIdAt($x, $y+2, $z+2, $roof);
-                            $level->setBlockIdAt($x+1, $y+2, $z+2, $roof);
-                            $level->setBlockIdAt($x+2, $y+2, $z+2, $roof);
-                            $level->setBlockIdAt($x+3, $y+2, $z+2, $roof);
-                            $level->setBlockIdAt($x+4, $y+2, $z+2, $roof);
+                            $level->setBlockIdAt($x, $y+2, $z+1, $wall);
+                            $level->setBlockIdAt($x+4, $y+2, $z+1, $wall);
+                            $level->setBlockIdAt($x, $y+2, $z+2, $wall);
+                            $level->setBlockIdAt($x+4, $y+2, $z+2, $wall);
+                            $level->setBlockIdAt($x, $y+2, $z+3, $wall);
+                            $level->setBlockIdAt($x+4, $y+2, $z+3, $wall);
 
-                            $level->setBlockIdAt($x, $y+2, $z+3, $roof);
-                            $level->setBlockIdAt($x+1, $y+2, $z+3, $roof);
-                            $level->setBlockIdAt($x+2, $y+2, $z+3, $roof);
-                            $level->setBlockIdAt($x+3, $y+2, $z+3, $roof);
-                            $level->setBlockIdAt($x+4, $y+2, $z+3, $roof);
+                            //DACH oder EBENE3
+                            $level->setBlockIdAt($x, $y+3, $z, $roof);
+                            $level->setBlockIdAt($x+1, $y+3, $z, $roof);
+                            $level->setBlockIdAt($x+2, $y+3, $z, $roof);
+                            $level->setBlockIdAt($x+3, $y+3, $z, $roof);
+                            $level->setBlockIdAt($x+4, $y+3, $z, $roof);
 
-                            $level->setBlockIdAt($x, $y+2, $z+4, $roof);
-                            $level->setBlockIdAt($x+1, $y+2, $z+4, $roof);
-                            $level->setBlockIdAt($x+2, $y+2, $z+4, $roof);
-                            $level->setBlockIdAt($x+3, $y+2, $z+4, $roof);
-                            $level->setBlockIdAt($x+4, $y+2, $z+4, $roof);
+                            $level->setBlockIdAt($x, $y+3, $z+1, $roof);
+                            $level->setBlockIdAt($x+1, $y+3, $z+1, $wall);
+                            $level->setBlockIdAt($x+2, $y+3, $z+1, $wall);
+                            $level->setBlockIdAt($x+3, $y+3, $z+1, $wall);
+                            $level->setBlockIdAt($x+4, $y+3, $z+1, $roof);
+
+                            $level->setBlockIdAt($x, $y+3, $z+2, $roof);
+                            $level->setBlockIdAt($x+1, $y+3, $z+2, $wall);
+                            $level->setBlockIdAt($x+2, $y+3, $z+2, $wall);
+                            $level->setBlockIdAt($x+3, $y+3, $z+2, $wall);
+                            $level->setBlockIdAt($x+4, $y+3, $z+2, $roof);
+
+                            $level->setBlockIdAt($x, $y+3, $z+3, $roof);
+                            $level->setBlockIdAt($x+1, $y+3, $z+3, $wall);
+                            $level->setBlockIdAt($x+2, $y+3, $z+3, $wall);
+                            $level->setBlockIdAt($x+3, $y+3, $z+3, $wall);
+                            $level->setBlockIdAt($x+4, $y+3, $z+3, $roof);
+
+                            $level->setBlockIdAt($x, $y+3, $z+4, $roof);
+                            $level->setBlockIdAt($x+1, $y+3, $z+4, $roof);
+                            $level->setBlockIdAt($x+2, $y+3, $z+4, $roof);
+                            $level->setBlockIdAt($x+3, $y+3, $z+4, $roof);
+                            $level->setBlockIdAt($x+4, $y+3, $z+4, $roof);
+                            //ENDE DACH oder EBENE3
+
+                            //COBBLEBODEN
+                            $level->setBlockIdAt($x, $y-1, $z, $cobble);
+                            $level->setBlockIdAt($x+1, $y-1, $z, $cobble);
+                            $level->setBlockIdAt($x+2, $y-1, $z, $cobble);//under door
+                            $level->setBlockIdAt($x+3, $y-1, $z, $cobble);
+                            $level->setBlockIdAt($x+4, $y-1, $z, $cobble);
+
+                            $level->setBlockIdAt($x, $y-1, $z+4, $cobble);
+                            $level->setBlockIdAt($x+1, $y-1, $z+4, $cobble);
+                            $level->setBlockIdAt($x+2, $y-1, $z+4, $cobble);
+                            $level->setBlockIdAt($x+3, $y-1, $z+4, $cobble);
+                            $level->setBlockIdAt($x+4, $y-1, $z+4, $cobble);
+
+                            $level->setBlockIdAt($x, $y-1, $z+1, $cobble);
+                            $level->setBlockIdAt($x+4, $y-1, $z+1, $cobble);
+                            $level->setBlockIdAt($x, $y-1, $z+2, $cobble);
+                            $level->setBlockIdAt($x+4, $y-1, $z+2, $cobble);
+                            $level->setBlockIdAt($x, $y-1, $z+3, $cobble);
+                            $level->setBlockIdAt($x+4, $y-1, $z+3, $cobble);
 
                         }
             }
