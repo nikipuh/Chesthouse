@@ -1,8 +1,10 @@
-name: SelfbuildingHouse
+name: EconomyChesthouse
 main: nikipuh\Main
 version: 1.3
 api: [3.0.0]
 author: LeNick
 commands:
-  sbh:
-    default: op
+  buyhouse:
+    default: true
+  info:
+    default: true
