@@ -1,6 +1,7 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/nikipuh/Chesthouse
 branches:
 - master
+- economy-support
 projects:
   Chesthouse:
     path: ""
