@@ -61,7 +61,7 @@
                 break;
         }
        return true; }
-ic function onBlockPlace(BlockPlaceEvent $event){
+public function onBlockPlace(BlockPlaceEvent $event){
             $item = mb_strtolower($event->getItem()->getCustomName());
             if ($event->getItem()->getNamedTagEntry("ChestHouse")) {
                 $event->setCancelled(true);
