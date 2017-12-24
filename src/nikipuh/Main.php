@@ -25,7 +25,7 @@
 	$this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
         //Command
-        public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+ public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
         switch(strtolower($command->getName())) {
             case "buyhouse":
 		if (count($args) == 2) {
@@ -38,24 +38,23 @@
                 $item->setCustomName("§dChest§bHouse");
                 $item->setNamedTagEntry(new CompoundTag("ChestHouse", []));
 		$player = $this->getServer()->getPlayer($name);
-                if ($player instanceof Player && $sender->hasPermission("buyhouse")){
+                if ($player instanceof Player){
 		if($money < $housecost){
-			$sender->sendMessage("Not enough money!");
+			$sender->sendMessage("§cNot enough money!");
 		}else{
-			$sender->sendMessage("You bought $count chesthouse/s!");
+			$sender->sendMessage("§aYou bought $count chesthouse/s!");
 			EconomyAPI::getInstance()->reduceMoney($sender, $housecost);
-			$player->getInventory()->addItem($item);}
-                }else{
-                $sender->sendMessage("Use: /buyhouse <player> <amount>");
-
-            return true;
-        } break;
-                //Credits to my fat ass
+			$player->getInventory()->addItem($item);
+                }
+                }
+                }else{$sender->sendMessage("§ePrice: $housecost\n§7Use: /buyhouse <player> <amount>");}
+break;
                 case "info":
                     $sender->sendMessage(" §eChesthouse Plugin by LeNick ");
-                    $sender->sendMessage(" Economy-Version for awaken.play-skyblock.tk");
+                    $sender->sendMessage(" §aEconomy-Version for awaken.play-skyblock.tk");
                     $sender->sendMessage(" §ehttps://github.com/nikipuh ");
                 break;
+        }
         }
 
 ic function onBlockPlace(BlockPlaceEvent $event){
