@@ -15,6 +15,7 @@
 	use pocketmine\Player;
         use pocketmine\item\ItemFactory;
         use pocketmine\nbt\tag\CompoundTag;
+        use onebone\economyapi\EconomyAPI;
 
 	class Main extends PluginBase implements Listener {
 
@@ -25,12 +26,12 @@
 	$this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
         //Command
- public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+        public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
         switch(strtolower($command->getName())) {
             case "buyhouse":
 		if (count($args) == 2) {
 		$houseprice = $this->getConfig()->get("price-for-a-house");
-                $housecost = $houseprice * $args[0];
+                $housecost = $houseprice * $args[1];
                 $money = EconomyAPI::getInstance()->myMoney($sender);
                 $name = mb_strtolower($args[0]);
                 $count = mb_strtolower($args[1]);
@@ -47,16 +48,19 @@
 			$player->getInventory()->addItem($item);
                 }
                 }
-                }else{$sender->sendMessage("§ePrice: $housecost\n§7Use: /buyhouse <player> <amount>");}
-break;
+                }else{ 
+			$houseprice = $this->getConfig()->get("price-for-a-house");
+                        $sender->sendMessage("§ePrice: $houseprice\n§fUse: /buyhouse <player> <amount>");
+		}
+			break;
+			
                 case "info":
                     $sender->sendMessage(" §eChesthouse Plugin by LeNick ");
                     $sender->sendMessage(" §aEconomy-Version for awaken.play-skyblock.tk");
                     $sender->sendMessage(" §ehttps://github.com/nikipuh ");
                 break;
         }
-        }
-
+       return true; }
 ic function onBlockPlace(BlockPlaceEvent $event){
             $item = mb_strtolower($event->getItem()->getCustomName());
             if ($event->getItem()->getNamedTagEntry("ChestHouse")) {
