@@ -18,32 +18,47 @@
 
 	class Main extends PluginBase implements Listener {
 
-        public function onEnable() {
-            $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        }
-		
+	public function onEnable() {
+        $this->getServer()->getLogger()->info("§f===============§eWelcome to ChestHouse by LeNick!§f===============");
+        $this->getServer()->getLogger()->info("§ePlease install EconomyS for this Plugin to work! - Else it will cause Errors...");
+        $this->saveDefaultConfig();
+	$this->getServer()->getPluginManager()->registerEvents($this, $this);
+    }
+        //Command
         public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
-            if (count($args) == 3) {
+        switch(strtolower($command->getName())) {
+            case "buyhouse":
+		if (count($args) == 2) {
+		$houseprice = $this->getConfig()->get("price-for-a-house");
+                $housecost = $houseprice * $args[0];
+                $money = EconomyAPI::getInstance()->myMoney($sender);
                 $name = mb_strtolower($args[0]);
-                $house = mb_strtolower($args[1]);
-                $count = mb_strtolower($args[2]);
+                $count = mb_strtolower($args[1]);
                 $item = ItemFactory::get(Item::CHEST, 0, $count);
                 $item->setCustomName("§dChest§bHouse");
                 $item->setNamedTagEntry(new CompoundTag("ChestHouse", []));
-
-                $player = $this->getServer()->getPlayer($name);
-                if ($player instanceof Player) {
-                    $player->getInventory()->addItem($item);
-                    $sendername = $sender->getDisplayName();
-                    $player->sendMessage("$sendername gave you a chesthouse!");
-                }
-            } else
-                $sender->sendMessage("Use: /sbh <player> <house(1)> <quantity>");
+		$player = $this->getServer()->getPlayer($name);
+                if ($player instanceof Player && $sender->hasPermission("buyhouse")){
+		if($money < $housecost){
+			$sender->sendMessage("Not enough money!");
+		}else{
+			$sender->sendMessage("You bought $count chesthouse/s!");
+			EconomyAPI::getInstance()->reduceMoney($sender, $housecost);
+			$player->getInventory()->addItem($item);}
+                }else{
+                $sender->sendMessage("Use: /buyhouse <player> <amount>");
 
             return true;
+        } break;
+                //Credits to my fat ass
+                case "info":
+                    $sender->sendMessage(" §eChesthouse Plugin by LeNick ");
+                    $sender->sendMessage(" Economy-Version for awaken.play-skyblock.tk");
+                    $sender->sendMessage(" §ehttps://github.com/nikipuh ");
+                break;
         }
 
-        public function onBlockPlace(BlockPlaceEvent $event){
+ic function onBlockPlace(BlockPlaceEvent $event){
             $item = mb_strtolower($event->getItem()->getCustomName());
             if ($event->getItem()->getNamedTagEntry("ChestHouse")) {
                 $event->setCancelled(true);
